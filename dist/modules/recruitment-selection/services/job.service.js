@@ -43,6 +43,9 @@ let JobService = class JobService {
         jobApp.accountId = accountId;
         await this.jobAppRepo.save(jobApp);
     }
+    async findJobApplication(jobId, accountId) {
+        return await this.jobAppRepo.findOne({ jobId, accountId });
+    }
     async getJobApplications(jobId) {
         return await this.viewJobApp.find({ jobId });
     }

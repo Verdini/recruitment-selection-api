@@ -12,5 +12,6 @@ export declare class JobService {
     getById(id: number): Promise<Job>;
     updateJob(job: Job): Promise<Job>;
     createjobApplication(jobId: number, accountId: number): Promise<void>;
+    findJobApplication(jobId: number, accountId: number): Promise<JobApplication>;
     getJobApplications(jobId: number): Promise<ViewJobApplication[]>;
 }

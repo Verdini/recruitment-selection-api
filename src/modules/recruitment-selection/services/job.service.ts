@@ -37,6 +37,12 @@ export class JobService {
     jobApp.accountId = accountId;
     await this.jobAppRepo.save(jobApp);
   }
+  public async findJobApplication(
+    jobId: number,
+    accountId: number,
+  ): Promise<JobApplication> {
+    return await this.jobAppRepo.findOne({ jobId, accountId });
+  }
 
   public async getJobApplications(
     jobId: number,

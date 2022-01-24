@@ -8,7 +8,7 @@ import {
 import { AccountDTO } from '../dtos/account.dto';
 import { ResponseDto } from '../dtos/response.dto';
 import { AccountService } from '../services/account.service';
-import { cryptPassword } from 'src/utils/crypt-password';
+import { cryptPassword } from '../../../utils/crypt-password';
 import { Account } from '../entities/account.entity';
 import {
   ApiBadRequestResponse,

@@ -67,11 +67,14 @@ let JobController = class JobController {
     async apply(jobId, body) {
         try {
             const job = await this.jobService.getById(jobId);
-            if (!job)
+            if (!job || !job.published)
                 throw new common_1.NotFoundException(new response_dto_1.ResponseDto(false, `Couldn't find job with id ${jobId}`));
             const account = await this.accountService.getById(body.accountId);
             if (!account)
                 throw new common_1.NotFoundException(new response_dto_1.ResponseDto(false, `Couldn't find account with id ${jobId}`));
+            const jobApp = await this.jobService.findJobApplication(job.id, account.id);
+            if (jobApp)
+                throw new common_1.HttpException(new response_dto_1.ResponseDto(false, 'Application already exists'), common_1.HttpStatus.BAD_REQUEST);
             await this.jobService.createjobApplication(job.id, account.id);
             return 'Job application done!';
         }

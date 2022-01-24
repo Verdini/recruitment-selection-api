@@ -123,7 +123,7 @@ export class JobController {
   ): Promise<string | HttpException> {
     try {
       const job = await this.jobService.getById(jobId);
-      if (!job)
+      if (!job || !job.published)
         throw new NotFoundException(
           new ResponseDto(false, `Couldn't find job with id ${jobId}`),
         );
@@ -132,6 +132,16 @@ export class JobController {
       if (!account)
         throw new NotFoundException(
           new ResponseDto(false, `Couldn't find account with id ${jobId}`),
+        );
+
+      const jobApp = await this.jobService.findJobApplication(
+        job.id,
+        account.id,
+      );
+      if (jobApp)
+        throw new HttpException(
+          new ResponseDto(false, 'Application already exists'),
+          HttpStatus.BAD_REQUEST,
         );
 
       await this.jobService.createjobApplication(job.id, account.id);
