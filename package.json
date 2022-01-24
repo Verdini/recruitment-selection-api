@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "recruitment-selection-api",
   "version": "0.0.1",
   "description": "Backend service for a recruitment and selection platform",
   "author": "Marcos Verdini",
@@ -60,6 +60,9 @@
     "ts-node": "^10.0.0",
     "tsconfig-paths": "^3.10.1",
     "typescript": "^4.3.5"
+  },
+  "engine": {
+    "node": "16.x"
   },
   "jest": {
     "moduleFileExtensions": [
