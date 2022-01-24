@@ -79,10 +79,10 @@ export class JobController {
   @Patch('publish-job/:jobId')
   @ApiTags('Recruiter')
   @ApiOperation({ description: 'Publishes a job for application.' })
-  @ApiCreatedResponse({
-    description: 'The job has been successfully created.',
+  @ApiOkResponse({
+    description: 'The job has been successfully published.',
   })
-  @ApiBadRequestResponse({ description: "Couldn't list the jobs." })
+  @ApiBadRequestResponse({ description: "Couldn't publish the job." })
   async publishJob(
     @Param('jobId', ParseIntPipe) jobId: number,
   ): Promise<Job | HttpException> {
@@ -110,8 +110,13 @@ export class JobController {
     }
   }
 
-  @ApiTags('Candidate')
   @Post('apply/:jobId')
+  @ApiTags('Candidate')
+  @ApiOperation({ description: 'A candidate apply for a job.' })
+  @ApiCreatedResponse({
+    description: 'The job applicaiton has been successfully done.',
+  })
+  @ApiBadRequestResponse({ description: "Couldn't apply for the job." })
   async apply(
     @Param('jobId', ParseIntPipe) jobId: number,
     @Body() body: JobApplicationDTO,
@@ -140,8 +145,15 @@ export class JobController {
     }
   }
 
-  @ApiTags('Interviewer')
   @Get('view-applications/:jobId')
+  @ApiTags('Interviewer')
+  @ApiOperation({ description: 'Lists all the applications for a job' })
+  @ApiOkResponse({
+    description: 'The applications list',
+  })
+  @ApiBadRequestResponse({
+    description: "Couldn't retrieve the applications list.",
+  })
   async viewApplications(
     @Param('jobId', ParseIntPipe) jobId: number,
   ): Promise<ViewJobApplication[] | HttpException> {

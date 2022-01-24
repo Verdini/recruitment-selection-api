@@ -3,6 +3,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from './modules/config/config.module';
 import { RecruitmentSelectionModule } from './modules/recruitment-selection/recruitment-selection.module';
 
+/**
+ * Main application module.
+ */
 @Module({
   imports: [
     ConfigModule.forRoot({ path: '.env.yml' }),
