@@ -15,7 +15,7 @@ A simple API for a Recruitment & Selection platform.
 
 ### Nest installation and command helpers:
 npm i -g @nestjs/cli  
-npx nest new backend  
+npx nest new [backend]  
 npx nest generate module [name]  
 npx nest g resource [name]  
 
@@ -24,9 +24,8 @@ npm i @nestjs/typeorm typeorm pg
 npm i bcrypt  
 npm i --save-dev @types/bcrypt  
 npm i git+https://github.com/gupy-io/gupy-env.git  
-npm i @nestjs/passport passport passport-http-bearer passport-jwt  
 npm i @nestjs/swagger swagger-ui-express  
-npm i @nestjs/cqrs  
+npm i @nestjs/testing 
 
 ### Environment variables
 
